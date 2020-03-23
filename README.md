@@ -3,8 +3,8 @@ This is a simple .NET Core API representing how to add support for `gRPC` endpoi
 
 ## What it is made of?
 - A data repository which is shared for all endpoints
-- A REST endpoint (data models and [Controller](https://github.com/mafshin/dotnet-core-api-grpc-rest/blob/master/PortfolioAPI/PortfolioAPI/RestApi/CustomerPortfolioController.cs))
-- A gRPC endpoint (protobuf file and [Service](https://github.com/mafshin/dotnet-core-api-grpc-rest/blob/master/PortfolioAPI/PortfolioAPI/Services/CustomerPortfolioService.cs))
+- A REST endpoint ([data models](https://github.com/mafshin/dotnet-core-api-grpc-rest/tree/master#rest-data-models) and [Controller](https://github.com/mafshin/dotnet-core-api-grpc-rest/blob/master/PortfolioAPI/PortfolioAPI/RestApi/CustomerPortfolioController.cs))
+- A gRPC endpoint ([protobuf](https://github.com/mafshin/dotnet-core-api-grpc-rest/tree/master#protobuf-data-models) file and [Service](https://github.com/mafshin/dotnet-core-api-grpc-rest/blob/master/PortfolioAPI/PortfolioAPI/Services/CustomerPortfolioService.cs))
 
 ### REST Data Models
   - Request: [CustomerPortfolioRequest.cs](https://github.com/mafshin/dotnet-core-api-grpc-rest/blob/master/PortfolioAPI/PortfolioAPI/Models/Rest/CustomerPortfolioRequest.cs)
