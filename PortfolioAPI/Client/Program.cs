@@ -55,9 +55,9 @@ namespace Client
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(serviceAddress);
+                var requestUri = string.Format($"{serviceAddress}/api/CustomerPortfolio/{customerId}");
 
-                var response = await CallRestApi(client, customerId);
+                var response = await CallRestApi(client, requestUri);
 
                 var portfoResponse = response.Item1;
 
@@ -75,15 +75,15 @@ namespace Client
 
                 for (int i = 0; i < customerId; i++)
                 {
-                    await CallRestApi(client, i);
+                    requestUri = string.Format($"{serviceAddress}/api/CustomerPortfolio/{customerId}");
+
+                    await CallRestApi(client, requestUri);
                 }
             }
         }
 
-        private static async Task<(PortfolioAPI.Models.Rest.CustomerPortfolioResponse, long responseLengh)> CallRestApi(HttpClient client, int customerId)
-        {
-            var requestUri = string.Format($"api/CustomerPortfolio/{customerId}");
-
+        private static async Task<(PortfolioAPI.Models.Rest.CustomerPortfolioResponse, long responseLengh)> CallRestApi(HttpClient client, string requestUri)
+        {            
             var req = new HttpRequestMessage(HttpMethod.Get, requestUri)
             {
                 Version = new Version(2, 0)
