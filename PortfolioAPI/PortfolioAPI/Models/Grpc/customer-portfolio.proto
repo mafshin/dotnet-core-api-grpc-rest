@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "PortfolioAPI.Grpc";
+
+package portflio;
+
+service CustomerPortfolioService {
+	rpc GetCustomerPortflio(GetCustomerPortfolioRequest) returns (GetCustomerPortfolioResponse);
+}
+
+message GetCustomerPortfolioRequest {
+	int32 customerId = 1;
+}
+
+message GetCustomerPortfolioResponse {
+    CustomerPortfolio customerPortfolio = 1;
+}
+
+message CustomerPortfolio {
+	string customerTitle = 1;
+	repeated CustomerPortfolioItem items = 2;
+}
+
+message CustomerPortfolioItem {
+	string stock = 1;
+	int32 count = 2;
+	sint64 profitLoss = 3;
+}
