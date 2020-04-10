@@ -46,15 +46,28 @@ message CustomerPortfolioItem {
 
 ```
 
+## Response Length
+| Service Type | Response Length (kb) |
+---------------|:------------|
+| REST |  323 |
+| gRPC |  142 (**0.43x**)|
 
-## Performance Comparison (from Client Perspective)
+Grpc uses binary protocol for data transfer so response is nearly half the length of REST response in our sample.
 
-| Service Type | Response Length (kb) | CPU (sec) |
----------------|:------------|:----------|
-| REST |  323 | 83 |
-| gRPC |  142 (**0.43x**)| 18 (**0.21x**)	|
+## Performance Comparison (Client)
 
-As you can see from the above simple comparison, clients which connect to our `gRPC` endpoint will be served **5** times faster
-while the consumed traffic to get data is roughly **half** in comparison to the `REST` endpoint. It's northworty that the 
-actual difference of response length and processing time will depend on your actual data objects but because of nature of
-`gRPC` proto buffers binary format, you will probably achieve similar results.
+``` ini
+
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19577
+Intel Core i7-6700 CPU 3.40GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.1.101
+  [Host]     : .NET Core 3.1.1 (CoreCLR 4.700.19.60701, CoreFX 4.700.19.60801), X64 RyuJIT
+  DefaultJob : .NET Core 3.1.1 (CoreCLR 4.700.19.60701, CoreFX 4.700.19.60801), X64 RyuJIT
+
+
+```
+|  Method | count |       Mean |    Error |   StdDev | Ratio |      Gen 0 |     Gen 1 |     Gen 2 | Allocated |
+|-------- |------ |-----------:|---------:|---------:|------:|-----------:|----------:|----------:|----------:|
+| RESTApi |  2000 | 1,908.0 ms | 35.96 ms | 33.63 ms |  1.00 | 21000.0000 | 7000.0000 | 2000.0000 | 117.08 MB |
+| GrpcApi |  2000 |   194.9 ms |  9.69 ms | 28.27 ms |  **0.10** |  5000.0000 | 2000.0000 |         - |  24.94 MB |
+
