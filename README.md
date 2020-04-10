@@ -52,7 +52,7 @@ message CustomerPortfolioItem {
 | REST |  323 |
 | gRPC |  142 (**0.43x**)|
 
-Grpc uses binary protocol for data transfer so response is nearly half the length of REST response in our sample.
+gRPC uses binary protocol for data transfer so response is nearly half the length of REST response in our sample.
 
 ## Performance Comparison (Client)
 
