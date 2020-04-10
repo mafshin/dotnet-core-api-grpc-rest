@@ -13,7 +13,7 @@ namespace PortfolioAPI.Data
             return new CustomerPortfolio()
             {
                 CustomerTitle = $"Customer {customerId}",
-                Items = Enumerable.Range(0, customerId).Select(i => new CustomerPortfolioItem()
+                Items = Enumerable.Range(0, 10).Select(i => new CustomerPortfolioItem()
                 {
                     Count = i * 2,
                     ProfitLoss = -1 * i * i,
